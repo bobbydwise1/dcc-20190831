@@ -41,10 +41,16 @@ class binNode {
     this.right = yourRight;
     return yourRight
   }
-  
+
 }
 
-
+const makeEqn = (someNode) => {
+  let output = []
+  output.unshift(someNode.value)
+  output.unshift(someNode.left.value )
+  output.push( someNode.right.value)
+  return output;
+}
 
 let node_root = new binNode('*')
 let node_plus1 = new binNode('+')
