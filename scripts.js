@@ -45,10 +45,15 @@ class binNode {
 }
 
 const makeEqn = (someNode) => {
-  let output = []
-  output.unshift(someNode.value)
-  output.unshift(someNode.left.value )
-  output.push( someNode.right.value)
+  let output = ''
+  console.log('current level : ', someNode.value)
+  output = someNode.value + output
+  if (someNode.left != null) {
+    output = makeEqn(someNode.left) + output
+  }
+  if (someNode.right != null) {
+    output = output + makeEqn(someNode.right)
+  }
   return output;
 }
 
