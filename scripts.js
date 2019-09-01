@@ -18,35 +18,25 @@ For example, given the following tree:
 You should return 45, as it is (3 + 2) * (4 + 5).
 */
 
-/* Recall order of operations: PEMDAS
-a.  Parenthesis
-b.  Exponents
-c.  Multipulcation and Division
-d.  Addtion and Subtraction
-*/
-
+//Assume javascript node is defined as: {'value'=null, 'left'=null, 'right'= null}
 class binNode {
   constructor(value=null,left=null,right=null) {
     this.value = value;
     this.left = left;
     this.right = right;
   }
-
   addLeft(yourLeft) {
     this.left = yourLeft;
     return yourLeft;
   }
-
   addRight(yourRight) {
     this.right = yourRight;
     return yourRight
   }
-
 }
 
 const makeEqn = (someNode) => {
   let output = ''
-  console.log('current level : ', someNode.value)
   output = someNode.value + output
   if ((someNode.left != null) && (someNode.right != null)) {
     output = '(' + makeEqn(someNode.left) + output + makeEqn(someNode.right) + ')'
@@ -58,6 +48,11 @@ const makeEqn = (someNode) => {
   return output;
 }
 
+const evalString = (yourString) => {
+  
+}
+
+//Base test case
 let node_root = new binNode('*')
 let node_plus1 = new binNode('+')
 let node_plus2 = new binNode('+')
@@ -69,7 +64,7 @@ let node_5 = new binNode('5')
 let node_8 = new binNode('8')
 let node_6 = new binNode('6')
 
-console.log(node_root)
+console.log(node_root) //result: ((3+2)*(4+5))
 
 node_root.addLeft(node_plus1)
 node_root.addRight(node_plus2)
@@ -81,31 +76,22 @@ node_plus2.addRight(node_5)
 console.log(makeEqn(node_root))
 /* create a 2nd new test:
 
-*
-/ \
-+    +
-/ \  / \
+     *
+    / \
+  +    +
+ / \  / \
 3  2  *  5
-      /\
-      8 6
+     / \
+    8   6
+
 */
 
 node_4.value = '*'
 node_4.addLeft(node_8)
 node_4.addRight(node_6)
 
-console.log(makeEqn(node_root))
-
-console.log(node_root)
+console.log(makeEqn(node_root)) //result: ((3+2)*((8*6)+5))
 
 $(document).ready(function() {
-  $('#form1').submit(function(event){
-    event.preventDefault()
-    let input0 = $('#input-section-0').val()
-    console.log(input0)
-    let input1 = input0.replace(/'/g,'"')
-    let input2 = JSON.parse(input1)
-    $('#output-section-0').text(JSON.stringify(input2))
-
-  })
+  event.preventDefault()
 });
