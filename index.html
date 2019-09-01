@@ -36,6 +36,23 @@
 <p>You should return 45, as it is (3 + 2) * (4 + 5).</p>
   <h4><b>Answer:</b></h4>
   <p>For working code, see the scripts file, and inspect your browser's console.  The core working code is below:</p>
-  <p>My method adds surrounding parenthesis on the outer layer, which I think is acceptable.</p>
+  <div style='border: 2px solid black; padding: 10px'>
+  <pre>
+const makeEqn = (someNode) => {
+  let output = ''
+  output = someNode.value + output
+  if ((someNode.left != null) && (someNode.right != null)) {
+    output = '(' + makeEqn(someNode.left) + output + makeEqn(someNode.right) + ')'
+  } else if (someNode.left != null) {
+    output = makeEqn(someNode.left) + output
+  } else if (someNode.right != null) {
+    output = output + makeEqn(someNode.right)
+  }
+  console.log(output)
+  return output; //use eval() on this result
+}
+  </pre>
+  </div>
+  <p>My method adds surrounding parenthesis on the outer layer.</p>
 </body>
 </html>

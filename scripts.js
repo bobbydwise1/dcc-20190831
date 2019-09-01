@@ -46,7 +46,7 @@ const makeEqn = (someNode) => {
     output = output + makeEqn(someNode.right)
   }
   console.log(output) //This is the equation string
-  return eval(output); //This is the final calculated output
+  return output; //Note to eval the string, javascript uses eval(yourString)
 }
 
 //Base test case
@@ -71,7 +71,7 @@ node_plus2.addLeft(node_4)
 node_plus2.addRight(node_5)
 
 let test1 = makeEqn(node_root) //result: ((3+2)*(4+5))
-console.log(test1) //result: 45
+console.log(eval(test1)) //result: 45
 
 /* create a 2nd new test:
 
@@ -90,7 +90,7 @@ node_4.addLeft(node_8)
 node_4.addRight(node_6)
 
 let test2 = makeEqn(node_root) //result: ((3+2)*((8*6)+5))
-console.log(test2) //result: 265
+console.log(eval(test2)) //result: 265
 
 $(document).ready(function() {
 });
