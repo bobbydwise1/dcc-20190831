@@ -48,10 +48,11 @@ const makeEqn = (someNode) => {
   let output = ''
   console.log('current level : ', someNode.value)
   output = someNode.value + output
-  if (someNode.left != null) {
+  if ((someNode.left != null) && (someNode.right != null)) {
+    output = '(' + makeEqn(someNode.left) + output + makeEqn(someNode.right) + ')'
+  } else if (someNode.left != null) {
     output = makeEqn(someNode.left) + output
-  }
-  if (someNode.right != null) {
+  } else if (someNode.right != null) {
     output = output + makeEqn(someNode.right)
   }
   return output;
@@ -64,6 +65,11 @@ let node_3 = new binNode('3')
 let node_2 = new binNode('2')
 let node_4 = new binNode('4')
 let node_5 = new binNode('5')
+//extra nodes for 2nd test
+let node_8 = new binNode('8')
+let node_6 = new binNode('6')
+
+console.log(node_root)
 
 node_root.addLeft(node_plus1)
 node_root.addRight(node_plus2)
@@ -71,6 +77,24 @@ node_plus1.addLeft(node_3)
 node_plus1.addRight(node_2)
 node_plus2.addLeft(node_4)
 node_plus2.addRight(node_5)
+
+console.log(makeEqn(node_root))
+/* create a 2nd new test:
+
+*
+/ \
++    +
+/ \  / \
+3  2  *  5
+      /\
+      8 6
+*/
+
+node_4.value = '*'
+node_4.addLeft(node_8)
+node_4.addRight(node_6)
+
+console.log(makeEqn(node_root))
 
 console.log(node_root)
 
