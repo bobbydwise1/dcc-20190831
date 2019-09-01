@@ -45,11 +45,8 @@ const makeEqn = (someNode) => {
   } else if (someNode.right != null) {
     output = output + makeEqn(someNode.right)
   }
-  return output;
-}
-
-const evalString = (yourString) => {
-  
+  console.log(output) //This is the equation string
+  return eval(output); //This is the final calculated output
 }
 
 //Base test case
@@ -64,7 +61,7 @@ let node_5 = new binNode('5')
 let node_8 = new binNode('8')
 let node_6 = new binNode('6')
 
-console.log(node_root) //result: ((3+2)*(4+5))
+console.log(node_root)
 
 node_root.addLeft(node_plus1)
 node_root.addRight(node_plus2)
@@ -73,7 +70,9 @@ node_plus1.addRight(node_2)
 node_plus2.addLeft(node_4)
 node_plus2.addRight(node_5)
 
-console.log(makeEqn(node_root))
+let test1 = makeEqn(node_root) //result: ((3+2)*(4+5))
+console.log(test1) //result: 45
+
 /* create a 2nd new test:
 
      *
@@ -90,8 +89,8 @@ node_4.value = '*'
 node_4.addLeft(node_8)
 node_4.addRight(node_6)
 
-console.log(makeEqn(node_root)) //result: ((3+2)*((8*6)+5))
+let test2 = makeEqn(node_root) //result: ((3+2)*((8*6)+5))
+console.log(test2) //result: 265
 
 $(document).ready(function() {
-  event.preventDefault()
 });
