@@ -18,26 +18,50 @@ For example, given the following tree:
 You should return 45, as it is (3 + 2) * (4 + 5).
 */
 
-const sortArray = (yourArray) => {
-  let temp = yourArray.slice().sort(function(a,b){return a-b})
-  return temp
-}
+/* Recall order of operations: PEMDAS
+a.  Parenthesis
+b.  Exponents
+c.  Multipulcation and Division
+d.  Addtion and Subtraction
+*/
 
-const findContigSum = (yourArray) => {
-  let output = [];
-  let temp;
-  for ( i = 0; i < yourArray.length; i++ ) {
-    temp = yourArray.slice(i,j)
-    output.push(temp.reduce((a,b)=> a+b,0))
+class binNode {
+  constructor(value=null,left=null,right=null) {
+    this.value = value;
+    this.left = left;
+    this.right = right;
   }
-  return output
+
+  addLeft(yourLeft) {
+    this.left = yourLeft;
+    return yourLeft;
+  }
+
+  addRight(yourRight) {
+    this.right = yourRight;
+    return yourRight
+  }
+  
 }
 
-let test0 = [34, -50, 42, 14, -5, 86]
-let test1 = [-5, -1, -8, -9]
-console.log(findContigSum(test0))
 
 
+let node_root = new binNode('*')
+let node_plus1 = new binNode('+')
+let node_plus2 = new binNode('+')
+let node_3 = new binNode('3')
+let node_2 = new binNode('2')
+let node_4 = new binNode('4')
+let node_5 = new binNode('5')
+
+node_root.addLeft(node_plus1)
+node_root.addRight(node_plus2)
+node_plus1.addLeft(node_3)
+node_plus1.addRight(node_2)
+node_plus2.addLeft(node_4)
+node_plus2.addRight(node_5)
+
+console.log(node_root)
 
 $(document).ready(function() {
   $('#form1').submit(function(event){
